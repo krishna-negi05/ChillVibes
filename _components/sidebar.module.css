@@ -1,0 +1,187 @@
+.sidebar {
+  width: 60px;
+  height: calc(100vh - 20px); /* Subtract gap from total height */
+  margin: 10px; /* 10px gap from all sides */
+  background: linear-gradient(180deg, #0d0d0d, #1a1a1a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;/* Prevents overflow from pseudo-elements */
+  justify-content: center;
+  box-sizing: border-box; /* Includes padding in dimensions */
+  position: fixed; /* Sidebar stays fixed on the side of the screen */
+  left: 10px; /* Aligns with left margin */
+  z-index: 1; 
+  scrollbar-width: thin; /* Thin scrollbar for modern browsers */
+  scrollbar-color: #1a1a1a transparent; /* Subtle scrollbar */
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%); /* For smooth clipping */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%);
+  clip-path: inset(0 round 50px); /* Matches the sidebar's border radius */
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.7), /* Dark shadow below */
+    inset -5px -5px 10px rgba(255, 255, 255, 0.1), /* Inner light */
+    inset 5px 5px 15px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
+}
+
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.sidebar::after,
+.sidebar::before {
+  content: '';
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  background-image: conic-gradient(
+    #ff4545, 
+    #00ff99, 
+    #006aff, 
+    #ff0095
+  );
+  animation: spin 2s linear infinite; /* Simplify animation directly */
+  z-index: -1;
+}
+
+.sidebar::before {
+  filter: blur(4rem); /* Increase blur to make it more prominent */
+  opacity: 0.9; /* Make it more visible */
+}
+
+
+/* Keyframe for Spinning */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); /* Rotate the element */
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.sidebar span {
+  position: absolute;
+  inset: 3px;
+  background: #1c1f2b;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  z-index: 1; /* Ensures icons and content are above pseudo-elements */
+}
+
+.icon {
+  color: #ffffff;
+  font-size: 24px; /* Ensures consistent font size for font-based icons */
+  width: 40px; /* Set a fixed width */
+  height: 40px; /* Set a fixed height */
+  line-height: 40px; /* Centers text-based icons vertically */
+  display: flex; /* Ensures proper alignment for nested elements */
+  align-items: center; /* Centers icons vertically */
+  justify-content: center; /* Centers icons horizontally */
+  margin: 15px 0;
+  cursor: pointer;
+  transition: color 0.3s;
+  z-index: 2; /* Ensures visibility over pseudo-elements */
+}
+
+.icon:hover {
+  color: #00ffff;
+  transform: scale(1.2); 
+}
+
+.logo {
+  color: #00ffff;
+  font-size: 24px;
+  margin-bottom: 20px;
+  z-index: 2; /* Ensures visibility over pseudo-elements */
+}
+
+.active {
+  background-color: #ff4c4c;
+  border-radius: 50%;
+  color: white;
+  z-index: 2; /* Ensures visibility over pseudo-elements */
+}
+
+/* Scrollbar Styles */
+.sidebar::-webkit-scrollbar {
+  width: 4px; 
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #1a1a1a; 
+  border-radius: 50px; 
+}
+
+.sidebar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Profile Picture */
+.profile {
+  margin-top: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2; /* Ensures visibility over pseudo-elements */
+}
+
+.profile img {
+  width: 100%;
+  height: auto;
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 50px; /* Narrower for smaller screens */
+  }
+
+  .icon {
+    font-size: 20px; /* Smaller icons */
+    margin: 10px 0;
+  }
+
+  .logo {
+    font-size: 20px; /* Adjusted logo size */
+  }
+
+  .profile {
+    width: 30px; /* Smaller profile picture */
+    height: 30px;
+  }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 40px; /* Narrower for extra small screens */
+    padding: 10px 0;
+  }
+
+  .icon {
+    font-size: 18px; /* Smaller icons */
+    margin: 8px 0;
+  }
+
+  .logo {
+    font-size: 18px; /* Adjusted logo size */
+  }
+
+  .profile {
+    width: 25px; /* Smaller profile picture */
+    height: 25px;
+  }
+}
