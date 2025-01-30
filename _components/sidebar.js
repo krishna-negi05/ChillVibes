@@ -17,6 +17,12 @@ const Sidebar = () => {
     setActiveIcon(icon); // Keep only one icon pressed at a time
   };
 
+  const tooltipTexts = {
+    music: "Music Mood",
+    game: "Game Space",
+    motivate: "Motivation GPT",
+  };
+
   return (
     <div className={styles.sidebar}>
       <span></span>
@@ -35,7 +41,7 @@ const Sidebar = () => {
           >
             <img src={`./logos/${icon}.png`} alt={icon} />
             {activeTooltip === icon && (
-              <TooltipPortal text={`${icon.charAt(0).toUpperCase() + icon.slice(1)} Mode`} parentRef={iconRefs[icon]} />
+              <TooltipPortal text={tooltipTexts[icon]} parentRef={iconRefs[icon]} />
             )}
           </div>
         ))}
