@@ -91,14 +91,13 @@
   z-index: 2;
   background: radial-gradient(circle at top left, #444, #1a1a1a);
   box-shadow: 
-    0 10px 20px rgba(0, 0, 0, 0.7),
-    inset -5px -5px 10px rgba(255, 255, 255, 0.1),
-    inset 5px 5px 15px rgba(0, 0, 0, 0.5);
+  0 10px 20px rgba(0, 0, 0, 0.7),
+  inset -5px -5px 10px rgba(255, 255, 255, 0.1),
+  inset 5px 5px 15px rgba(0, 0, 0, 0.5);
   border-radius: 50%;
-  overflow: visible; /* Changed from hidden to show tooltip */
-  transition: transform 0.3s ease;
+  overflow: visible;
+  transition: all 0.2s ease-in-out;
 }
-
 
 .iconWrapper {
   position: relative; /* Add this wrapper class */
@@ -129,6 +128,15 @@
     visibility: visible;
     transform: translateY(-50%) translateX(5px);
   }
+
+  .icon.active {
+  transform: translateY(2px) scale(0.95);
+  box-shadow: 
+    inset 5px 5px 10px rgba(0, 0, 0, 0.6),
+    inset -5px -5px 10px rgba(255, 255, 255, 0.1),
+    2px 2px 5px rgba(0, 0, 0, 0.3),
+    -2px -2px 5px rgba(255, 255, 255, 0.1);
+}
   
 
 .logo {
